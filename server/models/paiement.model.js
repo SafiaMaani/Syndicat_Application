@@ -9,6 +9,14 @@ const Paiement = mongoose.model('Paiement', new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Resident"
   },
+  id_appart: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Appartement"
+  },
+  mois: {
+    type: String,
+    required:[true, "Entrez le mois payé!"]
+  }
 }))
 
 module.exports = Paiement

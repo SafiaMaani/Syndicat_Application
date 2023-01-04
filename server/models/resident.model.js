@@ -5,10 +5,14 @@ const Resident = mongoose.model('Resident', new mongoose.Schema({
     type: String,
     required: [true, "Entrez votre nom complet!"],
   },
-  id_appart: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Appartement"
+  cin: {
+    type: String,
+    required: [true, "Entrez le N° de catre d'indentité nationale!"]
   },
+  tel: {
+    type: String,
+    required: [true, "Entrez le N° de téléphone de locataire!"]
+  }
 }))
 
 module.exports = Resident

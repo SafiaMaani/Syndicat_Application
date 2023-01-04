@@ -5,6 +5,10 @@ const User = mongoose.model('User', new mongoose.Schema({
     type: String,
     required: [true, "Entrez votre nom complet!"],
   },
+  tel: {
+    type: String,
+    required: [true, "Entrer votre N° de téléphone"],
+  },
   email: {
     type: String,
     required: [true, "Entrez votre email!"],
