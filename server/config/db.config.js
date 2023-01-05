@@ -21,6 +21,7 @@ const connexion = () => {
             tel: process.env.TELEPHONE,
             email: process.env.EMAIL,
             password: hashedPassword,
+            verification_token: await bcrypt.hash(process.env.JWT_SECRECT, salt)
           })
           await newUser.save()
         }

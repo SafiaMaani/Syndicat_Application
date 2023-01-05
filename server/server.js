@@ -5,10 +5,12 @@ const connexion = require('./config/db.config')
 connexion()
 
 const app = express()
-const corsOptions = {
-  origin: 'http://localhost:9999'
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//   origin: 'http://localhost:3000',
+//   Credential: true
+// }
+
+app.use(cors())
 
 const routerAuth = require('./routes/authRoute')
 app.use(express.json())

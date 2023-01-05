@@ -19,6 +19,10 @@ const User = mongoose.model('User', new mongoose.Schema({
     required: [true, "Entrez votre mot de passe!"],
     minlength: 6,
   },
+  verification_token: {
+    type: String,
+    unique: true,
+  },
 }))
 
 module.exports = User
