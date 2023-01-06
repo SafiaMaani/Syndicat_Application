@@ -28,7 +28,17 @@ const addAppartement = async (req, res) => {
 }
 const deleteAppartement = async (req, res) => {}
 const updateAppartement = async (req, res) => {}
-const getAllAppartement = async (req, res) => {}
+const getAllAppartement = async (req, res) => {
+  Appartement.find().then((result) => {
+    res.status(200).json({
+      result
+    })
+  }).catch((err) => {
+    res.status(400).json({
+      err
+    })
+  })
+}
 
 module.exports = {
   addAppartement,
