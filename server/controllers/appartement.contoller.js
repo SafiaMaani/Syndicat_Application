@@ -1,7 +1,31 @@
 const Appartement = require('../models/appartement.model')
-const Resident = require('../models/resident.model')
 
-const addAppartement = async (req, res) => {}
+const addAppartement = async (req, res) => {
+
+  const appartement = new Appartement({
+    Number: req.body.Number,
+    rooms: req.body.rooms,
+    price: req.body.price,
+    Statut: req.body.Statut,
+  })
+
+  if (!appartement.Number || !appartement.rooms || !appartement.price || !appartement.Statut) {
+    return res.status(400).json({
+      message: "Veuillez remplir tous les champs!"
+    })
+  }
+
+  try {
+    await appartement.save()
+    return res.status(200).json({
+      message: "L'appartement a été ajouté avec succès !"
+    })
+  } catch (error) {
+    return res.status(400).json({
+      message: error
+    })
+  }
+}
 const deleteAppartement = async (req, res) => {}
 const updateAppartement = async (req, res) => {}
 const getAllAppartement = async (req, res) => {}
