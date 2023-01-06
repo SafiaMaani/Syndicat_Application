@@ -1,15 +1,16 @@
 import React from 'react'
 import { Outlet, Link } from "react-router-dom"
 import Logo from '../../Assets/images/lesyndic.png'
+import NavBar from '../../Components/NavBar'
 
 function Dashboard() {
   return (
     <div className="drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
+      <div className="drawer-content  mx-20">
         {/* <!-- Page content here --> */}
+        <NavBar />
         <Outlet />
-        <label htmlFor="my-drawer" className="drawer-button btn btn-primary">Menu</label>
       </div> 
       <div className="drawer-side">
         <label htmlFor="my-drawer" className="drawer-overlay "></label>
