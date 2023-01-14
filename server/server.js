@@ -14,13 +14,16 @@ app.use(cors())
 
 const routerAuth = require('./routes/authRoute')
 const routerAppart = require('./routes/appartRoute')
+const routerResident = require('./routes/residentRoute')
 
 app.use(express.json())
 
 //api/auth
 app.use('/api/auth/', routerAuth)
 //api/appart
-app.use('/api/appart/' , routerAppart)
+app.use('/api/appartements/', routerAppart)
+//api/residents
+app.use('/api/residents/', routerResident)
 
 const PORT = process.env.PORT || 8888
 app.listen(PORT, () => {
