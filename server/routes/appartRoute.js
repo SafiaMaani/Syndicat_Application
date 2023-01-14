@@ -7,16 +7,16 @@ const {
   getAllAppartement
 } = require('../controllers/appartement.contoller')
 
-//api/appart/getAllAppart : PRIVATE
+//api/appartements/getAllAppart : PRIVATE
 routerAppart.get('/getAllAppart', getAllAppartement)
 
-//api/appart/add : PRIVATE
+//api/appartements/add : PRIVATE
 routerAppart.post('/add', addAppartement)
 
-//api/appart/delete : PRIVATE
+//api/appartements/delete : PRIVATE
 routerAppart.delete('/delete', deleteAppartement)
 
-//api/appart/update : PRIVATE
+//api/appartements/update : PRIVATE
 routerAppart.put('/update', updateAppartement)
 
 module.exports = routerAppart
