@@ -10,6 +10,9 @@ function Dashboard() {
       <div className="drawer-content  mx-20">
         {/* <!-- Page content here --> */}
         <NavBar />
+        <div className="mockup-window border bg-base-300 my-4">
+          <div className="flex justify-center px-4 py-16 bg-base-200">Hello {JSON.parse(localStorage.getItem('localStorage')).userName}</div>
+        </div>
         <Outlet />
       </div> 
       <div className="drawer-side">

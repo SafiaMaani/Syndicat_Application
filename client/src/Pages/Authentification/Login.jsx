@@ -45,7 +45,11 @@ function Login() {
     .then((success) => {
         setError(null)
         setSuccess(success.data.message)
-        window.localStorage.setItem('token', success.data.token);
+        const localStorage= {
+          token: success.data.token,
+          userName: success.data.user.fullName
+        }
+        window.localStorage.setItem("localStorage", JSON.stringify(localStorage));
         Toaster.success(success.data.message, 'Success', {
             positionClass: "toast-bottom-right"
         })
