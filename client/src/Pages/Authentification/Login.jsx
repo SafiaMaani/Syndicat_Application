@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import FormInput from '../../Components/FormInput';
 import axios from 'axios'
@@ -6,6 +7,8 @@ import Toaster from 'toastr'
 import 'toastr/build/toastr.css'
 
 function Login() {
+  const navigate = useNavigate()
+
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -45,6 +48,7 @@ function Login() {
         Toaster.success(success.data.message, 'Success', {
             positionClass: "toast-bottom-right"
         })
+        navigate('/dashboard')
     })
     .catch((error) => {
         setError(error.response.data.message)
