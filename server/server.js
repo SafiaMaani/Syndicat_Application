@@ -5,16 +5,13 @@ const connexion = require('./config/db.config')
 connexion()
 
 const app = express()
-// const corsOptions = {
-//   origin: 'http://localhost:3000',
-//   Credential: true
-// }
 
 app.use(cors())
 
 const routerAuth = require('./routes/authRoute')
 const routerAppart = require('./routes/appartRoute')
 const routerResident = require('./routes/residentRoute')
+const routerPaiement = require('./routes/paiementRoute')
 
 app.use(express.json())
 
@@ -24,6 +21,8 @@ app.use('/api/auth/', routerAuth)
 app.use('/api/appartements/', routerAppart)
 //api/residents
 app.use('/api/residents/', routerResident)
+//api/paiements
+app.use('.api/paiements', routerPaiement)
 
 const PORT = process.env.PORT || 8888
 app.listen(PORT, () => {
