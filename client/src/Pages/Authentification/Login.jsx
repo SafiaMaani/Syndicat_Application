@@ -45,6 +45,7 @@ function Login() {
     .then((success) => {
         setError(null)
         setSuccess(success.data.message)
+        window.localStorage.setItem('token', success.data.token);
         Toaster.success(success.data.message, 'Success', {
             positionClass: "toast-bottom-right"
         })
