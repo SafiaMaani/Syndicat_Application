@@ -1,6 +1,8 @@
 import { React, useState} from 'react'
 import FormInput from './FormInput';
 import axios from 'axios';
+import Toaster from 'toastr'
+import 'toastr/build/toastr.css'
 
 function FormResidentAdd() {
 
@@ -35,18 +37,22 @@ function FormResidentAdd() {
   ]
   
   const handleAdd= ()=>{
-    console.log("I clicked add");
     axios.post(`http://localhost:9999/api/residents/add`, values)
     .then((res) => {
-      console.log(res.data);
+      Toaster.success(res.data.message, 'Success', {
+        positionClass: "toast-bottom-right"
+    })
     }).catch((err) => {
-      console.log(err.response.data);
+      if (err.response.data.message) {
+        Toaster.warning(err.response.data.message, 'warning!', {
+          positionClass: "toast-bottom-right"
+        })
+      }
     })
   }
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    console.log(values);
   };
 
   return (

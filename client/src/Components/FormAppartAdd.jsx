@@ -1,11 +1,10 @@
 import { React, useState} from 'react'
-// import { useLocation } from 'react-router-dom'
 import FormInput from './FormInput';
 import axios from 'axios';
+import Toaster from 'toastr'
+import 'toastr/build/toastr.css'
 
 function FormAppartAdd() {
-  // const location = useLocation();
-  // const route = location.pathname.split('/')[2]
 
   const [values, setValues] = useState({
     Number: 0,
@@ -46,18 +45,23 @@ function FormAppartAdd() {
   ]
   
   const handleAdd= ()=>{
-    console.log("I clicked add");
     axios.post(`http://localhost:9999/api/appartements/add`, values)
     .then((res) => {
-      console.log(res);
+      Toaster.success(res.data.message, 'Success', {
+        positionClass: "toast-bottom-right"
+    })
     }).catch((err) => {
-      console.log(err.response.data);
+      if (err.response.data.message) {
+        Toaster.warning(err.response.data.message, 'warning!', {
+          positionClass: "toast-bottom-right"
+        })
+      }
     })
   }
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    console.log(values);
+
   };
 
   return (
