@@ -1,4 +1,5 @@
 import React from 'react'
+import ButtonAdd from './ButtonAdd'
 
 function NavBar() {
   return (
@@ -11,7 +12,10 @@ function NavBar() {
           <input type="text" placeholder="Search" className="input input-bordered" />
         </div>
       </div>
-  </div>
+      <div>
+        <ButtonAdd />
+      </div>
+    </div>
   )
 }
 
