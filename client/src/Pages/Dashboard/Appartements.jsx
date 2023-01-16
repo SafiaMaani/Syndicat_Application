@@ -16,6 +16,11 @@ function Appartements() {
     fetchData()
   },[])
   
+  const deleteAppartement = (id)=>{
+    axios.delete("http://localhost:9999/api/appartements/delete/"+id)
+    .then((res)=> fetchData())
+  }
+  
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">
@@ -25,6 +30,7 @@ function Appartements() {
             <th>Chambre</th>
             <th>Prix</th>
             <th>Statut</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +40,7 @@ function Appartements() {
               <td>{item.rooms}</td>
               <td>{item.price} DH</td>
               <td>{item.Statut}</td>
+              <td><button className="btn btn-outline btn-error" onClick={() => deleteAppartement(item._id)}>Delete</button></td>
             </tr>
           )}
         </tbody>
