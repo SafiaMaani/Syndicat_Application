@@ -25,7 +25,27 @@ const addResident = async (req, res) => {
     })
   }
 }
-const deleteResident = async (req, res) => {}
+const deleteResident = async (req, res) => {
+  const id = req.params.id
+  
+  Resident.findByIdAndRemove(id)
+    .then(data => {
+      if (!data) {
+        return res.status(404).json({
+          message: `Cannot delete Resident with id=${id}. Maybe Resident was already deleted!`
+        });
+      } else {
+        return res.status(200).json({
+          message: "Resident was deleted successfully!"
+        })
+      }
+    })
+    .catch(err => {
+      return res.status(500).json({
+        message: "Could not delete Resident with id=" + id
+      });
+    });
+}
 const updateResident = async (req, res) => {}
 const getAllResident = async (req, res) => {
   Resident.find().then((result) => {
