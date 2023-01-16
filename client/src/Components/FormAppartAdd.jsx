@@ -35,15 +35,26 @@ function FormAppartAdd() {
       placeholder: "Prix de l'appartement",
       required: true,
     },
+  ]
+  const select = [
     {
       id: 4,
       name: "Statut",
       type: "select",
-      placeholder: "Statut de l'appartement",
+      options: [
+        {
+          name:'Loué',
+          value: "Loué"
+        },
+        {
+          name:'Vide',
+          value: "Vide"
+        }
+      ],
+      placeholder: "Selectionez le Statut de lappartement",
       required: true,
-    },
+    }
   ]
-  
   const handleAdd= ()=>{
     axios.post(`http://localhost:9999/api/appartements/add`, values)
     .then((res) => {
@@ -61,7 +72,7 @@ function FormAppartAdd() {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-
+    console.log({ ...values, [e.target.name]: e.target.value });
   };
 
   return (
@@ -71,6 +82,14 @@ function FormAppartAdd() {
           <FormInput 
             key={input.id}
             {...input}
+            onChange={handleChange}
+          />
+        ))}
+
+        {select.map((select) => (
+          <FormInput
+            key={select.id}
+            {...select}
             onChange={handleChange}
           />
         ))}
