@@ -27,7 +27,7 @@ const addResident = async (req, res) => {
 }
 const deleteResident = async (req, res) => {
   const id = req.params.id
-  
+
   Resident.findByIdAndRemove(id)
     .then(data => {
       if (!data) {
@@ -46,7 +46,30 @@ const deleteResident = async (req, res) => {
       });
     });
 }
-const updateResident = async (req, res) => {}
+const updateResident = async (req, res) => {
+  // if (!req.body) {
+  //   return res.status(400).json({
+  //     message: "Data to update can not be empty!"
+  //   });
+  // }
+  const id = req.params.id;
+
+  Resident.findByIdAndUpdate(id, req.body)
+    .then(data => {
+      if (!data) {
+        res.status(404).json({
+          message: `Cannot update Resident with id=${id}. Maybe Resident was not found!`
+        });
+      } else res.json({
+        message: "Resident was updated successfully."
+      });
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: "Error updating Resident with id=" + id
+      });
+    });
+}
 const getAllResident = async (req, res) => {
   Resident.find().then((result) => {
     res.status(200).json({
@@ -58,10 +81,21 @@ const getAllResident = async (req, res) => {
     })
   })
 }
-
+const getResidentById = async (req, res) => {
+  const {
+    id
+  } = req.params
+  const resident = await Resident.findOne({
+    _id: id
+  })
+  return res.status(200).json({
+    resident
+  })
+}
 module.exports = {
   addResident,
   deleteResident,
   updateResident,
-  getAllResident
+  getAllResident,
+  getResidentById
 }
