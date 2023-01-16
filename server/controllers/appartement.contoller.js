@@ -26,7 +26,28 @@ const addAppartement = async (req, res) => {
     })
   }
 }
-const deleteAppartement = async (req, res) => {}
+const deleteAppartement = async (req, res) => {
+  const id = req.params.id
+
+  Appartement.findByIdAndRemove(id)
+    .then(data => {
+      if (!data) {
+        return res.status(404).json({
+          message: `Cannot delete Appartement with id=${id}. Maybe Appartement was already deleted!`
+        });
+      } else {
+        return res.status(200).json({
+          message: "Appartement was deleted successfully!"
+        })
+      }
+    })
+    .catch(err => {
+      return res.status(500).json({
+        message: "Could not delete Appartement with id=" + id
+      });
+    });
+};
+
 const updateAppartement = async (req, res) => {}
 const getAllAppartement = async (req, res) => {
   Appartement.find().then((result) => {
