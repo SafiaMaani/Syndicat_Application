@@ -15,6 +15,12 @@ function Residents() {
   useEffect(()=> {
     fetchData()
   },[])
+
+  const deleteAppartement = (id)=>{
+    axios.delete("http://localhost:9999/api/residents/delete/"+id)
+    .then((res)=> fetchData())
+  }
+
   return (
     <div className="overflow-x-auto">
     <table className="table w-full">
@@ -23,6 +29,7 @@ function Residents() {
           <th>Nom complet</th>
           <th>N° de Carte d'indentité</th>
           <th>N° de téléphone</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +38,7 @@ function Residents() {
             <td>{item.fullName}</td>
             <td>{item.cin}</td>
             <td>{item.tel} </td>
+            <td><button className="btn btn-outline btn-error" onClick={() => deleteAppartement(item._id)}>Delete</button></td>
           </tr>
         )}
       </tbody>
